@@ -3,5 +3,4 @@ import 'package:intern_practice/Post/model/product.dart';
 
 abstract class ApiService {
   Future<ApiResponse> postData(Product product);
-  // Future<ApiResponse> getData();
 }

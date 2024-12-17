@@ -10,17 +10,12 @@ class ApiServiceImpl extends ApiService {
   @override
   Future<ApiResponse> postData(Product product) async {
     ApiResponse response = await api.postApi(
-      'https://api.escuelajs.co/api/v1/products',
+      postUrl,
       product.toJson(),
     );
     print("Request Data: ${product.toJson()}");
     print("Response: ${response.data}");
 
     return response;
-  }
-
-  @override
-  Future<ApiResponse> getData() {
-    throw UnimplementedError();
   }
 }

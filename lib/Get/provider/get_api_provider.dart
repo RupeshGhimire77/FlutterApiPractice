@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:intern_practice/Get/api_service.dart';
-import 'package:intern_practice/Get/api_service_impl.dart';
+import 'package:intern_practice/Get/service/api_service.dart';
+import 'package:intern_practice/Get/service/api_service_impl.dart';
 import 'package:intern_practice/Post/core/api_response.dart';
 import 'package:intern_practice/Post/core/status_util.dart';
 

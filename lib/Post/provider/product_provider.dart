@@ -16,9 +16,11 @@ class ProductProvider extends ChangeNotifier {
   int? price;
   String? description;
   int? categoryId;
-  List<String>? _images; // Update to List<String>?
+  // List<String>? _images;
 
-  // List<String>? get images => _images;
+  List<String> _images = []; // Initialize as an empty list
+
+  List<String> get images => _images;
 
   void setTitle(String value) {
     title = value;
@@ -28,19 +30,19 @@ class ProductProvider extends ChangeNotifier {
     description = value;
   }
 
-  // void addImage(String url) {
-  //   if (url.isNotEmpty) {
-  //     _images!.add(url);
-  //     notifyListeners(); // Notify listeners about the change
-  //   }
-  // }
+  void addImage(String url) {
+    if (url.isNotEmpty) {
+      _images?.add(url);
+      notifyListeners(); // Notify listeners about the change
+    }
+  }
 
-  // void removeImage(int index) {
-  //   if (index >= 0 && index < _images!.length) {
-  //     _images!.removeAt(index);
-  //     notifyListeners(); // Notify listeners about the change
-  //   }
-  // }
+  void removeImage(int index) {
+    if (index >= 0 && index < _images!.length) {
+      _images?.removeAt(index);
+      notifyListeners(); // Notify listeners about the change
+    }
+  }
 
   void setPrice(String value) {
     int? parsedPrice = int.tryParse(value);
@@ -73,25 +75,20 @@ class ProductProvider extends ChangeNotifier {
     // Ensure price and categoryId are set to valid defaults if null
     Product product = Product(
       title: title,
-      price:
-          price != null && price! > 0 ? price : 1, // Ensure price is positive
+      price: price != null && price! > 0 ? price : 1,
       description: description,
-      images: _images ??
-          ["https://i.imgur.com/QkIa5tT.jpeg"], // Default to at least one image
-      categoryId: categoryId != null && categoryId! > 0
-          ? categoryId
-          : 1, // Ensure categoryId is valid
+      images: _images!.isNotEmpty
+          ? _images
+          : [
+              "https://i.imgur.com/QkIa5tT.jpeg"
+            ], // Default to at least one image
+      categoryId: categoryId != null && categoryId! > 0 ? categoryId : 1,
     );
 
     // Debugging: Print the product data before making the API call
     print("Posting Product: ${product.toJson()}");
 
     ApiResponse apiResponse = await apiService.postData(product);
-    print("Category ID: ${categoryId}");
-    print("Price: ${price}");
-    print("Images: ${_images}");
-    print("Title: ${title}");
-    print("Description: ${description}");
 
     if (apiResponse.statusUtil == StatusUtil.success) {
       setPostProductStatus(StatusUtil.success);
