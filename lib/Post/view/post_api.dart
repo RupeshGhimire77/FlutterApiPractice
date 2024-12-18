@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intern_practice/Post/core/helper.dart';
 import 'package:intern_practice/Post/core/status_util.dart';
 import 'package:intern_practice/Post/core/string_const.dart';
+import 'package:intern_practice/Post/custom/custom_textform_field.dart';
 import 'package:intern_practice/Post/provider/product_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -46,11 +47,8 @@ class PostApi extends StatelessWidget {
                     key: _formKey,
                     child: Column(
                       children: [
-                        TextFormField(
-                          decoration: InputDecoration(
-                              labelText: "Category ID",
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(5))),
+                        CustomTextformField(
+                          labelText: "Category Id",
                           keyboardType: TextInputType.number,
                           onChanged: (value) {
                             productProvider.setCategoryId(
@@ -69,11 +67,8 @@ class PostApi extends StatelessWidget {
                         SizedBox(
                           height: 15,
                         ),
-                        TextFormField(
-                          decoration: InputDecoration(
-                              labelText: titleStr,
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(5))),
+                        CustomTextformField(
+                          labelText: titleStr,
                           onChanged: (value) {
                             productProvider.setTitle(value);
                           },
@@ -87,11 +82,8 @@ class PostApi extends StatelessWidget {
                         SizedBox(
                           height: 15,
                         ),
-                        TextFormField(
-                          decoration: InputDecoration(
-                              labelText: priceStr,
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(5))),
+                        CustomTextformField(
+                          labelText: priceStr,
                           keyboardType: TextInputType.number,
                           onChanged: (value) {
                             productProvider
@@ -110,11 +102,8 @@ class PostApi extends StatelessWidget {
                         SizedBox(
                           height: 15,
                         ),
-                        TextFormField(
-                          decoration: InputDecoration(
-                              labelText: descriptionStr,
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(5))),
+                        CustomTextformField(
+                          labelText: descriptionStr,
                           onChanged: (value) {
                             productProvider.setDescription(value);
                           },
@@ -129,20 +118,9 @@ class PostApi extends StatelessWidget {
                           height: 15,
                         ),
 
-                        TextFormField(
+                        CustomTextformField(
                           controller: _imageController,
-                          decoration: InputDecoration(
-                            labelText: "Image URL",
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(5),
-                            ),
-                          ),
-                          // validator: (value) {
-                          //   if (value!.isEmpty) {
-                          //     return "Please Enter an Image URL";
-                          //   }
-                          //   return null;
-                          // },
+                          labelText: "Image URL",
                         ),
                         SizedBox(height: 10),
                         ElevatedButton(
